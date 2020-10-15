@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Date関数を使ってアラートで日時を表示する</title>
+<style>
+    body {
+        padding: 10px 10%;
+    }
+    .example {
+        height: 1px;
+        position: relative;
+    }
+    .example::before {
+        content: "";
+        background-image: linear-gradient(to right, rgb(100, 92, 75), rgb(85, 81, 69) 3px, transparent 3px, transparent 8px);
+        background-size: 8px 1px;
+        background-repeat: repeat-x;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 20px;
+    }
+</style>
+</head>
+<script>
+
+    //日時取得
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;  //月は必ず +１をする！
+    const date = now.getDate();
+    const day = now.getDay();  //曜日[0=日曜日,1=月曜日...]
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+    
+    //曜日の表示
+    let d = "";
+    if(day == 0){
+       d="日曜日";
+    }else if(day == 1){
+        d="月曜日";
+    }else if(day == 2){
+        d="火曜日";
+    }else if(day == 3){
+        d="水曜日";
+    }else if(day == 4){
+        d="木曜日";
+    }else if(day == 5){
+        d="金曜日";
+    } else {
+        d="土曜日";
+    }
+    
+    //０〜１２時は午前・13〜17時は午後・18時〜2３時は夜と表示
+    let e = "";
+    if(h >= 0 && h <= 12){
+        e = "午前";
+    } else if(h >= 13 && h <= 17){
+        e = "午後";
+    } else {
+        e = "夜";
+    }
+
+    //日時表示文字列の作成
+    var str = "現在日時：";
+    alert( str + year+"年"+ month+"月"+date+"日"+"( "+d+" )"+h+"時"+m+"分"+s+"秒" +"〘 "+e+" 〙 ");
+
+
+    //旬間の表示
+    let k = "";
+    if(date >= 21){
+        k = "下旬";
+    } else if (date >= 11){
+        k = "中旬";
+    } else {
+        k = "上旬";
+    }
+    //旬間の作成
+    var str = "現在の旬間：";
+    alert( str + k );
+
+
+    //春夏秋冬と表示
+    let f = "";
+    if(month >= 3 && month <= 5){
+        f = "春🌸";
+    } else if (month >= 6 && month <= 8){
+        f = "夏🎇";
+    } else if (month >= 9 && month <= 11){
+        f = "秋🍂";
+    } else {
+        f = "冬⛄";
+    }
+    //春夏秋冬作成
+    var str = "現在の季節：";
+    alert( str + f );
+
+
+    //イベントの表示
+    let l = "";
+    if(month == 1 && date == 1){
+        l = "お正月🎍";
+    } else if (month == 2 && date == 2){
+        l = "節分👹";
+    } else if (month == 3 && date == 3){
+        l = "ひな祭り🎎";
+    } else if (month == 5 && date == 5){
+        l = "こどもの日🎏";
+    } else if (month == 7 && date == 7){
+        l = "七夕🎋";
+    } else if (month == 10 && date == 31){
+        l = "ハロウィン🎃";
+    } else if (month == 12 && date == 25){
+        l = "クリスマス🎄";
+    } else if (month == 2 && date == 14){
+        l = "バレンタインデー🍫";
+    } else if (month == 3 && date == 14){
+        l = "ホワイトデー";
+    } else if (month == 1 && date == 13){
+        l = "成人式👘";
+    } else if (month == 1 && date == 13){
+        l = "大学入試✎";
+    } else if (month == 5 && date == 10){
+        l = "母の日🌹";
+    } else if (month == 6 && date == 20){
+        l = "父の日👨";
+    } else if (month == 9 && date == 21){
+        l = "敬老の日";
+    } else if (month == 11 && date == 15){
+        l = "七五三📷";
+    } else if (month == 12 && date == 31){
+        l = "大晦日";
+    } else {
+        l = "なし";
+    }
+    //イベントの作成
+    var str = "季節のイベント：";
+    alert( str + l );    
+
+</script>
+<body>
+    <h1></span>Date関数を使ってアラートで日時を表示する</h1>
+    <div class="example"></div>
+</body>
+</html>
