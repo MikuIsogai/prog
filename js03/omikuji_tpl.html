@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>おみくじ</title>
+</head>
+<body>
+
+<header>
+    <h1>おみくじ</h1>
+</header>
+
+<main>
+    <ul>
+        <li id="pull">おみくじを引く</li>
+    </ul>
+    <p id="echo"></p>
+</main>
+
+<footer id="test">フッター</footer>
+<script>
+
+    //Clickイベントのブロック
+    const pull = document.querySelector("#pull");
+    pull.style.color = "#ffffff";
+    pull.style.backgroundColor = "#b0c4de";
+    pull.onclick = function(){
+
+        //乱数をつくる
+        const num = Math.ceil(Math.random()* 5); //大事！[* 5]のみ変えて使用する,1~5のどれか
+        //乱数をIF分岐処理で分ける
+        //条件に合っていればalert()で表示
+        if(num == 1){
+            const echo = document.querySelector('#echo');
+            echo.innerHTML = '<img src="jinii_pa.jpg" width=310 height=250>';
+            const test = document.querySelector('#test');
+            test.innerHTML = "大吉";
+            test.style.color = "#ffffff";
+            test.style.backgroundColor = "#b0c4de";
+        }else if(num == 2){
+            const echo = document.querySelector('#echo');
+            echo.innerHTML = '<img src="jinii_nico.jpg" width=290 height=230>';
+            const test = document.querySelector('#test');
+            test.innerHTML = "中吉";
+            test.style.color = "#ffffff";
+            test.style.backgroundColor = "#b0c4de";
+        }else if(num == 3){
+            const echo = document.querySelector('#echo');
+            echo.innerHTML = '<img src="jinii_maru2.jpg" width=280 height=250>';
+            const test = document.querySelector('#test');
+            test.innerHTML = "小吉";
+            test.style.color = "#ffffff";
+            test.style.backgroundColor = "#b0c4de";
+        }else if(num == 4){
+            const echo = document.querySelector('#echo');
+            echo.innerHTML = '<img src="jinii_moya3.jpg" width=130 height=190>';
+            const test = document.querySelector('#test');
+            test.innerHTML = "吉";
+            test.style.color = "#ffffff";
+            test.style.backgroundColor = "#b0c4de";
+        }else if(num == 5){
+            const echo = document.querySelector('#echo');
+            echo.innerHTML = '<img src="jinii_kanasimi.jpg" width=310 height=250>';
+            const test = document.querySelector('#test');
+            test.innerHTML = "凶";
+            test.style.color = "#ffffff";
+            test.style.backgroundColor = "#b0c4de";
+        }
+    }
+
+</script>
+</body>
+</html>
