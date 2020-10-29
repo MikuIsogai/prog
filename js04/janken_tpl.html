@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<style>
+
+  body{
+    text-align:center;
+  }
+    
+  #rect {
+    margin:70px auto 0;
+    padding:20px;
+    font-size: 40px;
+    color:#000000;
+  }
+
+  #gu_btn img {
+    opacity: 0.5; 
+  }
+    
+  #cho_btn img {
+    opacity: 0.5; 
+  }
+    
+  #par_btn img {
+    opacity: 0.5; 
+  }
+
+</style>
+<body>
+
+<header>
+    
+  <div id="rect">じゃんけん</div>
+  <div id="text">you vs computer！</div>
+        
+</header>
+
+<main>
+
+  <ul>
+    <li id="gu_btn">グー
+      <div><img src="jankenn_prt2_guu.jpg" alt="guu"></div>
+    </li>
+    
+    <li id="cho_btn">チョキ
+      <div><img src="jankenn_prt2_tyoki.jpg" alt="tyoki"></div>
+    </li>
+    
+    <li id="par_btn">パー
+      <div><img src="jankenn_prt2_paa.jpg" alt="paa"></div>
+    </li>
+  </ul>
+
+    <div>コンピュータの出した手は…</div>
+    <div>
+      <span id="pc_hands">なに？</span>
+    </div>
+    <div>
+      <span id="pc_hands_2">-</span>
+    </div>
+    <div id="judgment">勝敗</div>
+
+</main>
+
+<footer></footer>
+<script>
+  
+  const guu = document.querySelector("#gu_btn");
+  guu.style.color = "#f0e68c";
+  
+  const cho = document.querySelector("#cho_btn");
+  cho.style.color = "#e9967a";
+  
+  const par = document.querySelector("#par_btn");
+  par.style.color = "#9acd32";
+
+  const pchands = document.querySelector("#pc_hands");
+  pchands.style.fontSize = "18px";
+
+  const text = document.querySelector("#text");
+  text.style.fontSize = "18px";
+  text.style.marginBottom = "18px";
+
+  const judgment = document.querySelector("#judgment");
+  judgment.style.color = "#778899";
+
+  $(function () {
+    setTimeout('rect()'); //アニメーションを実行
+  });
+
+  function rect() {
+    $('#rect').animate({
+      marginTop: '-=10px'
+    }, 800).animate({
+      marginTop: '+=10px'
+    }, 800);
+    setTimeout('rect()', 1600); //アニメーションを繰り返す間隔
+  }
+    
+  var opa = $("#gu_btn img").css('opacity');
+    $("#gu_btn img:not(:animated)").hover(
+      function() {
+        $(this).fadeTo(5, 1);
+      },
+      function() {
+        $(this).fadeTo(10, opa);
+      }
+    );
+
+  var opa = $("#cho_btn img").css('opacity');
+    $("#cho_btn img:not(:animated)").hover(
+      function() {
+        $(this).fadeTo(5, 1);
+      },
+      function() {
+        $(this).fadeTo(10, opa);
+      }
+    );
+    
+  var opa = $("#par_btn img").css('opacity');
+    $("#par_btn img:not(:animated)").hover(
+      function() {
+        $(this).fadeTo(5, 1);
+      },
+      function() {
+        $(this).fadeTo(10, opa);
+      }
+    );
+
+  //*ボタンのクリックイベント
+  //*コンピュータの手の場合分け
+  //*勝ち負けの場合分け
+
+  $("#gu_btn").on("click", function(){
+    const num = Math.ceil(Math.random()* 3); 
+      if(num == 1){
+        $("#pc_hands").html("グー");
+        $("#pc_hands_2").html('<img src="janken_images_guu.png" alt="guu">');
+        $("#judgment").html("引き分け");
+      }
+      if(num == 2){
+        $("#pc_hands").html("チョキ");
+        $("#pc_hands_2").html('<img src="janken_images_cho.png" alt="choo">');
+        $("#judgment").html("あなたの勝ち！");
+      }
+      if(num == 3){
+        $("#pc_hands").html("パー");
+        $("#pc_hands_2").html('<img src="janken_images_par.png" alt="parr">');
+        $("#judgment").html("あなたの負け");
+      }
+  });
+  
+  
+  $("#cho_btn").on("click", function(){
+    const num = Math.ceil(Math.random()* 5); 
+      if(num == 1){
+        $("#pc_hands").html("グー");
+        $("#pc_hands_2").html('<img src="janken_images_guu.png" alt="guu">');
+        $("#judgment").html("あなたの負け");
+      }
+      if(num == 2){
+        $("#pc_hands").html("チョキ");
+        $("#pc_hands_2").html('<img src="janken_images_cho.png" alt="choo">');
+        $("#judgment").html("引き分け");
+      }
+      if(num == 3){
+        $("#pc_hands").html("パー");
+        $("#pc_hands_2").html('<img src="janken_images_par.png" alt="parr">');
+        $("#judgment").html("あなたの勝ち！");
+      }
+  });
+  
+  $("#par_btn").on("click", function(){
+    const num = Math.ceil(Math.random()* 5); 
+      if(num == 1){
+        $("#pc_hands").html("グー");
+        $("#pc_hands_2").html('<img src="janken_images_guu.png" alt="guu">');
+        $("#judgment").html("あなたの勝ち！");
+      }
+      if(num == 2){
+        $("#pc_hands").html("チョキ");
+        $("#pc_hands_2").html('<img src="janken_images_cho.png" alt="choo">');
+        $("#judgment").html("あなたの負け");
+      }
+      if(num == 3){
+        $("#pc_hands").html("パー");
+        $("#pc_hands_2").html('<img src="janken_images_par.png" alt="parr">');
+        $("#judgment").html("引き分け");
+      }
+  });
+
+</script>
+</body>
+</html>
