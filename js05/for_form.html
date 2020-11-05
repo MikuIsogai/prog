@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>繰り返し処理：for</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+<style>
+    body{
+        text-align: center;
+        background-color: rgb(255, 244, 230);
+    }
+    
+    h1{
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        margin-bottom: 20px;
+        margin-top: 20%;
+    }
+    
+    h2{
+        color: rgb(0, 0, 0);
+        font-size: 12px;
+        margin-top: 20px;
+    }
+</style>
+
+<!-- セレクトボックス作成[誕生日] -->
+<h1>あなたの誕生日🍰</h1>
+<select id="year"></select> 年
+<select id="month"></select> 月
+<select id="date"></select> 日
+<button tydive="button">クリック！</button>
+<h2 id="p"></h2>
+
+<script>
+
+//年:1900~2022
+let y = ""; //例) y += '<option value="'+i+'">'+i+'</option>';
+for(let i=1900; i<2025; i++){
+    y += '<option value="'+i+'">'+i+'</option>';
+}
+$("#year").html(y);
+
+//月:1~12
+let m = "";
+for(let j=1; j<13; j++){
+    m += '<option value="'+j+'">'+j+'</option>'
+}
+$("#month").html(m);
+
+//日:1~31
+let d = "";
+for(let k=1; k<32; k++){
+    d += '<option value="'+k+'">'+k+'</option>'
+}
+$("#date").html(d);
+
+//誕生日の表示
+$(function() {
+    // クリックしたら発動
+    $('button').click(function() {
+    
+    // 選択肢を変数に格納する
+    var year = $('#year option:selected').text();
+    var month = $('#month option:selected').text();
+    var date = $('#date option:selected').text();
+
+    //h2に文字表示
+    $('#p').text(year + " 年 " + month + " 月 " + date + " 日 🎉");
+    });
+});
+
+</script>
+</body>
+</html>
