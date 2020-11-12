@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+
+<header>
+<h1>MemoPad 📝</h1>
+</header>
+
+<main>
+    <h2>数字</h2>
+    <input type="text" id="key">
+    <h2>内容</h2>
+    <textarea id="memo"></textarea>
+    <ul>
+        <li id="save">保存</li>
+        <li id="clear">消去</li>
+    </ul>
+<table id="list">
+
+<!-- 文字サイズの変更 -->
+<select name="fontSize">
+    <option value="80">text size：Small</option>
+    <option value="140">text size：Medium</option>
+    <option value="200">text size：Large</option>
+</select>
+
+<!--背景色変更-->
+<input type="button" value="background1" onClick="color1()">
+<input type="button" value="background2" onClick="color2()">
+<input type="button" value="background3" onClick="color3()">
+</table>
+
+<!--足し算-->
+<h2>計算（半角数字）</h2>
+<div>
+    <label for="textForm1"></label>
+    <input type="text" id="textForm1">
+    <label for="textForm2">+</label>
+    <input type="text" id="textForm2">
+    <button id="button">=</button>
+    <label for="resultForm"></label>
+    <input type="text" id="resultForm">
+</div>
+
+</main>
+<script>
+
+//1.Save クリックイベント
+$("#save").on("click",function(){
+    const key = $("#key").val();
+    const value = $("#memo").val();
+    localStorage.setItem(key,value);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td></tr>';
+    $("#list").append(html);
+});
+
+//2.clear クリックイベント
+$("#clear").on("click",function(){
+    localStorage.clear();
+    $("#list").empty();
+});
+
+//3.ページ読み込み：保存データ取得表示
+for(let i=0; i<localStorage.length; i++){
+    const key   = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td></tr>';
+    $("#list").append(html);
+}
+
+$(function(){
+    //フォントサイズ変更
+    $("[name='fontSize']").change(function(){
+        var size = $(this).val();
+        $('body').css("fontSize",size+"%");
+    })
+});
+
+// パターン1の色設定開始
+function color1(){
+document.bgColor = "#b0c4de"; // 背景色
+document.fgColor = "#000000"; // 文字の基本色
+}
+
+// パターン2の色設定開始
+function color2(){
+document.bgColor = "#cac3d9";
+document.fgColor = "#000000";
+}
+
+// パターン3の色設定開始
+function color3(){
+document.bgColor = "#2f4f4f";
+document.fgColor = "#b0c4de";
+}
+
+//足し算計算
+var button = document.getElementById("button");
+// ボタンをクリックした時の処理
+button.addEventListener("click", function(e) {
+    e.preventDefault();
+    // 2つの入力フォームの値を取得
+    var textForm1 = document.getElementById("textForm1").value;
+    var textForm2 = document.getElementById("textForm2").value;
+    // 2つの数値を足す
+    var sum = parseInt(textForm1, 10) + parseInt(textForm2, 10);
+    // 足し算の結果を別の入力フォームに表示
+    var resultForm = document.getElementById("resultForm");
+    resultForm.value = sum;
+});
+
+
+</script>
+<footer></footer>
+</body>
+</html>
