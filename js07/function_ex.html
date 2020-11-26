@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function_ex</title>
+    <style>
+
+        body{
+            text-align: center;
+            padding-top: 10%;
+            background-color: darkkhaki;
+        }
+        h3{
+            font-size: 15px;
+        }
+        h2{
+            font-size: 25px;
+            color: rgb(54, 68, 29);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h3>18+26の足し算を表示</h3>
+    <h2 id="s"> </h2>
+    <h3>170-52の引き算を表示</h3>
+    <h2 id="l"> </h2>
+    <h3>7×11のかけ算を表示</h3>
+    <h2 id="m"> </h2>
+    <h3>16÷4のわり算を表示</h3>
+    <h2 id="n"> </h2>
+    <h3>10÷3の割り算の余りを表示</h3>
+    <h2 id="o"> </h2>
+    
+<script>
+    
+    //関数群
+    function tasu(a,b){
+        const t = a + b;
+        console.log(t);
+        return t;
+    }
+    function sa(a,b){
+        const t = a - b;
+        console.log(t);
+        return t;
+    }
+    function seki(a,b){
+        const t = a * b;
+        console.log(t);
+        return t;
+    }
+    function syou(a,b){
+        const t = a / b;
+        console.log(t);
+        return t;
+    }
+    function amari(a,b){
+        const t = a % b;
+        console.log(t);
+        return t;
+    }
+
+    //実行群
+    const a = tasu(18,26);
+    const b = sa(170,52);
+    const c = seki(7,11);
+    const d = syou(16,4);
+    const e = amari(10,3);
+    const t = a;
+    const u = b;
+    const v = c;    
+    const w = d;
+    const x = e;
+    document.querySelector("#s").innerHTML=t;
+    document.querySelector("#l").innerHTML=u;
+    document.querySelector("#m").innerHTML=v;
+    document.querySelector("#n").innerHTML=w;
+    document.querySelector("#o").innerHTML=x;
+
+
+</script>
+</body>
+</html>

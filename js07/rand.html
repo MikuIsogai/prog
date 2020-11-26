@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body{
+            text-align: center;
+            background-color: rgba(151, 183, 184, 0.63);
+        }
+        h3{
+            font-size: 14px;
+            padding-left: 30%;
+            padding-right: 30%;
+            line-height: 150%;
+            padding-top: 2%;
+            color: rgb(110, 116, 114);
+        }
+        h4{
+            font-size: 30px;
+            padding: 3%;
+        }
+        h5{
+            font-size: 20px;
+            margin-top: 3%;
+        }
+        line_1{
+            width: 95%;
+            height: 95%;
+        }
+
+    </style>
+</head>
+
+    <h4> 関数によるおみくじ <img src="inari.png" alt="inari" width="50px" height="50px"></h4>
+    <img src="line_1.png" alt="line">
+    <h3> 1が出たら大吉 2が出たら中吉 3が出たら小吉 4が出たら吉 5が出たら凶 </h3>
+    <h5 id="s">数字</h5>
+
+<body>
+    <script>
+
+        //const num = Math.ceil(Math.random() * 5);
+        //const num = Math.floor(Math.random() * 5);
+
+            function rand(n){
+                const num = Math.ceil(Math.random() * n);
+                return num;
+            }
+
+            //実行部分
+            console.log( rand(5) );
+            console.log( rand(5) );
+            console.log( rand(5) );
+            const a = rand(5);
+            document.querySelector("#s").innerHTML=a;
+        
+            if(a == 1){
+                document.write('<img src="omikuji1.png" alt="大吉" width="200px" height="200px">');
+            }else if(a == 2){
+                document.write('<img src="omikuji2.png" alt="中吉" width="200px" height="200px">');
+            }else if(a == 4){
+                document.write('<img src="omikuji4.png" alt="吉" width="200px" height="200px">');
+            }else if(a == 5){
+                document.write('<img src="omikuji5.png" alt="凶" width="200px" height="200px">');
+            }else{
+                document.write('<img src="omikuji3.png" alt="小吉" width="200px" height="200px">');
+            }
+            
+    </script>
+</body>
+</html>

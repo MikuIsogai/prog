@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function_ex2</title>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <style>
+
+        body{
+            text-align: center;
+            padding-top: 20%;
+            background-color: rgb(100, 137, 151);
+        }
+        h3{
+            font-size: 15px;
+            color: #000000;
+        }
+        h1{
+            font-size: 25px;
+            color: rgb(42, 62, 100);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h3>『18+26,170-52,7×11,16÷4,10÷3の余り』を全て足した値</h3>
+    <h1 id="s"></h1>
+    <h3>上の値を5で割った余りを表示</h3>
+    <h1 id="m"></h1>
+
+    <script>
+
+        //関数群
+        function tasu(a,b){
+            const t = a + b;
+            return t;
+        }
+        function sa(a,b){
+            const t = a - b;
+            return t;
+        }
+        function seki(a,b){
+            const t = a * b;
+            return t;
+        }
+        function syou(a,b){
+            const t = a / b;
+            return t;
+        }
+        function amari(a,b){
+            const t = a % b;
+            return t;
+        }
+
+        //実行群
+        const a = tasu(18,26);
+        const b = sa(170,52);
+        const c = seki(7,11);
+        const d = syou(16,4);
+        const e = amari(10,3);
+        const t = a + b + c + d + e;
+        const k = t % 5
+        document.querySelector("#s").innerHTML=t;
+        document.querySelector("#m").innerHTML=k;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>セレクトボックスを関数化！！</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+
+    body{
+        text-align: center;
+        background-color: rgb(255, 244, 230);
+    }
+    h1{
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        margin-bottom: 25px;
+        margin-top: 15%;
+    }
+    h2{
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- セレクトボックス作成[START] -->
+    <h1>誕生日を選択してボタンをクリック!<img src="present.png" alt="cake" width="50px" height="50px"></h1>
+    <select id="year"></select>
+    <select id="month"></select>
+    <select id="date"></select>
+    <button tydive="button">?</button>
+    <h2 id="p"></h2>
+    <h2 id="q"></h2>
+    <h2 id="r"></h2>
+<!-- セレクトボックス作成[END] -->
+
+<script>
+    
+    function ymd(start, end, id){
+        let y = ""; 
+        for(let i=start; i<=end; i++){
+            y += '<option value="'+i+'">'+i+'</option>';
+        }
+        $(id).html(y);
+    }
+    
+    //実行部分
+    ymd(1900,2025,"#year");
+    ymd(1,12,"#month");
+    ymd(1,31,"#date");
+
+    //誕生日の表示
+    $(function() {
+        // クリックしたら発動
+        $('button').click(function() {
+        
+        // 選択肢を変数に格納する
+        var year = $('#year option:selected').text();
+        var month = $('#month option:selected').text();
+        var date = $('#date option:selected').text();
+
+        // 星座
+        if(month == 1){
+            if(date > 0 && date <= 19){
+                $('#q').text("やぎ座");
+                $('#r').html('<img src="yagi.png">');
+            }else if(date > 19 && date <= 31){
+                $('#q').text("みずがめ座");
+                $('#r').html('<img src="mizugame.png">');
+            }
+        }else if(month == 2){
+            if(date > 0 && date <= 18){
+                $('#q').text("みずがめ座");
+                $('#r').html('<img src="mizugame.png">');
+            }else if(date > 18 && date <= 29){
+                $('#q').text("うお座");
+                $('#r').html('<img src="uo.png">');
+            }
+        }else if(month == 3){
+            if(date > 0 && date <= 20){
+                $('#q').text("うお座");
+                $('#r').html('<img src="uo.png">');
+            }else if(date > 20 && date <= 31){
+                $('#q').text("おひつじ座");
+                $('#r').html('<img src="ohitsuji.png">');
+            }
+        }else if(month == 4){
+            if(date > 0 && date <= 19){
+                $('#q').text("おひつじ座");
+                $('#r').html('<img src="ohitsuji.png">');
+            }else if(date > 19 && date <= 30){
+                $('#q').text("おうし座");
+                $('#r').html('<img src="oushi.png">');
+            }
+        }else if(month == 5){
+            if(date > 0 && date <= 20){
+                $('#q').text("おうし座");
+                $('#r').html('<img src="oushi.png">');
+            }else if(date >20 && date <= 31){
+                $('#q').text("ふたご座");
+                $('#r').html('<img src="futago.png">');
+            }
+        }else if(month == 6){
+            if(date > 0 && date <= 21){
+                $('#q').text("ふたご座");
+                $('#r').html('<img src="futago.png">');
+            }else if(date > 21 && date <= 30){
+                $('#q').text("かに座");
+                $('#r').html('<img src="kani.png">');
+            }
+        }else if(month == 7){
+            if(date > 0 && date <= 22){
+                $('#q').text("かに座");
+                $('#r').html('<img src="kani.png">');
+            }else if(date > 22 && date <= 31){
+                $('#q').text("しし座");
+                $('#r').html('<img src="shishi.png">');
+            }
+        }else if(month == 8){
+            if(date > 0 && date <= 22){
+                $('#q').text("しし座");
+                $('#r').html('<img src="shishi.png">');
+            }else if(date > 22 && date <= 31){
+                $('#q').text("おとめ座");
+                $('#r').html('<img src="otome.png">');
+            }
+        }else if(month == 9){
+            if(date > 0 && date <= 22){
+                $('#q').text("おとめ座");
+                $('#r').html('<img src="otome.png">');
+            }else if(date > 22 && date <= 30){
+                $('#q').text("てんびん座");
+                $('#r').html('<img src="tenbin.png">');
+            }
+        }else if(month == 10){
+            if(date > 0 && date <= 23){
+                $('#q').text("てんびん座");
+                $('#r').html('<img src="tenbin.png">');
+            }else if(date > 23 && date <= 31){
+                $('#q').text("さそり座");
+                $('#r').html('<img src="sasori.png">');
+            }
+        }else if(month == 11){
+            if(date > 0 && date <= 22){
+                $('#q').text("さそり座");
+                $('#r').html('<img src="sasori.png">');
+            }else if(date > 22 && date <= 30){
+                $('#q').text("いて座");
+                $('#r').html('<img src="ite.png">');
+            }
+        }else if(month == 12){
+            if(date > 0 && date <= 21){
+                $('#q').text("いて座");
+                $('#r').html('<img src="ite.png">');
+            }else if(date > 21 && date <= 31){
+                $('#q').text("やぎ座");
+                $('#r').html('<img src="yagi.png">');
+            }
+        }
+
+        //h2に文字表示
+        $('#p').text(year + "年" + month + "月" + date + "日 ✨");
+        });
+    });
+
+</script>
+</body>
+</html>
