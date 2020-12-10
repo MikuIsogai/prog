@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>雑学クイズ6題</title>
+</head>
+<body>
+
+<header> </header>
+
+<main>
+    <div><h1>雑学クイズ</h1></div>
+
+    <div class="kakomi-smart2"><span class="title-smart2">説明</span>クイズをする前に下の開始ボタンをクリック！<br>
+        ヒントを参考に6問のクイズを解いた後、かかった時間と正解数、正解率を確認してね！<br>
+        （画面一番下にある右側のボタンをクリックすると上へスクロールできます）
+    </div>
+    <button onclick="start()">開始ボタン</button>
+    
+    <div class="flame27">
+        <p class="flame27-title" id="quiz_no"></p>
+        <p id="quest">ここに問題が出題されます</p>
+        <p>
+            <input type="radio" name="toi" value="1"><span id="toi1">選択肢１</span>
+            <input type="radio" name="toi" value="2"><span id="toi2">選択肢２</span>
+            <input type="radio" name="toi" value="3"><span id="toi3">選択肢３</span>
+        </p>
+    </div>
+
+    <h2 id="hinto">ヒント!</h2>
+    <h3>正解 or 不正解</h3>
+
+    <div style='height:80px;'></div>
+    <div id="page_top"><a href="#">TOP☝</a></div>
+
+</main>
+
+<footer>- Quiz Trivia -</footer>
+
+<script>
+//ここから記述領域［START］
+
+    //以下に配列を記述してください。
+    //問題文[配列]
+    const qs = ["ワインを横に寝かせて保管するのはなぜ？",
+                "次の中で実際にある数学用語は？",
+                "大仏はなぜパンチパーマなのか？",
+                "お肉の焼き加減を表す言葉はどれ？",
+                "シュークリームの「シュー」の意味は？",
+                "スイートルームのスイートって何？",
+    ];
+    
+    //回答選択肢[多重配列]
+    const toi = [["取りやすいから","瓶が割れにくいから","コルクが乾燥しにくいから"],
+                ["セクシー素数","ダンディ素数","ハンサム素数"],
+                ["仏陀の髪型をもとにしているから","かっこいいと思われていたから","威厳を表すから"],
+                ["レッド","ブルー","イエロー"],
+                ["包む","靴","キャベツ"],
+                ["あまい","すてき","一続き"]
+    ];
+
+    // 一応解説です！
+    // const setu = ["コルクを湿らせておくため。乾燥したコルクは空気を通しやすいため、ワインの酸化が進んでしまう！",
+    //             "差が６の素数の組（例7、13）、ラテン語の６に由来する!",
+    //             "「螺髪（らほつ）」と呼ばれるもので、仏陀がそなえていたという32の身体的特徴のひとつ",
+    //             "肉の表面を数秒だけ焼く焼き加減のことをブルーと呼ぶ!",
+    //             "生地の見た目がキャベツに似ているから「シュー」と呼ばれている。",
+    //             "寝室やリビングが一続きになっている部屋だからスイートルーム!"
+    // ];
+        
+    //ひんと
+    const hinto = ["1問目のヒント：ワインは酸化が大敵！",
+                    "2問目のヒント：差が６の素数の組を表す!",
+                    "3問目のヒントはありません",
+                    "4問目のヒント：数秒だけ焼く焼き加減のこと！",
+                    "5問目のヒント：「シュー」はフランス語！",
+                    "6問目のヒントはありません"
+    ];
+
+    //エンディング
+    const ending = ["正解率は 約83％ おしい！",
+                    "正解率は 約66％ もうちょっと！",
+                    "正解率は 50％ あと少し！",
+                    "正解率は 約33％ お疲れ様！",
+                    "正解率は 約16％ 残念！",
+                    "正解率は 0％ がんばろう！"
+    ];
+
+    //答え[配列]
+    const ans = [3, 1, 1, 2, 3, 3];
+    
+    //問題数[配列]
+    const num = ["Q 1", "Q 2", "Q 3", "Q 4", "Q 5", "Q 6"];
+
+    //グローバル変数による正解数
+    let score = 0; // デフォルトは0で
+
+    //1.最初の問題文＆回答選択肢＆回答値を設定
+    let i = 0;
+    $("#quest").text(qs[i]);
+    $("#toi1").text( toi[i][0] );
+    $("#toi2").text( toi[i][1] );
+    $("#toi3").text( toi[i][2] );
+    $("#quiz_no").text( num[i] );
+    $("#hinto").text( hinto[i] );
+
+    //2.ラジオボタンをクリックしたらイベント発生！(クリックイベント)
+    $("[name=toi]").on("click",function(){
+        const v = $(this).val();
+        if(ans[i] == v){
+            $("h3").text("正解！");
+            score++; // scoreを1増やす
+        } else {
+            $("h3").text("不正解！");
+        }
+
+        i++; // 配列に入れるiが1プラスされる
+        if (i < 6){
+            $("#quest").text( qs[i] );
+            $("#toi1").text( toi[i][0] );
+            $("#toi2").text( toi[i][1] );
+            $("#toi3").text( toi[i][2] );
+            $("#quiz_no").text( num[i] );
+            $("#hinto").text( hinto[i] );
+        } else {
+            alert("これでクイズは終了！");
+                
+            // 時間
+            var e_time = new Date();
+            if(s_time == null) {
+                //$("h3").text("開始を押してからもう一度トライしてね！");
+                alert("時間が計れませんでした😢開始ボタンを押してからもう一度トライしてね！");
+                } else {
+                var diff = e_time.getTime() - s_time.getTime();
+                //$("h3").text("かかった時間:"+ diff +"秒");
+                alert("かかった時間 : "+ diff +"秒 ⏰");
+            }
+
+            if(score == 6){
+                alert("全問正解✨ 「 6問 /6問」");
+                //$("#hinto").text("正解率は 100％!");
+                alert("正解率は 100％!");
+            } else {
+                alert("正解した数は「 " + score + "問 /6問」！");
+                if(score == 5){
+                    //$("#hinto").text(ending[0]);
+                    alert(ending[0]);
+                } else if(score == 4){
+                    //$("#hinto").text(ending[1]);
+                    alert(ending[1]);
+                } else if(score == 3){
+                    //$("#hinto").text(ending[2]);
+                    alert(ending[2]);
+                } else if(score == 2){
+                    //$("#hinto").text(ending[3]);
+                    alert(ending[3]);
+                } else if(score == 1){
+                    //$("#hinto").text(ending[4]);
+                    alert(ending[4]);
+                } else {
+                    //$("#hinto").text(ending[5]);
+                    alert(ending[5]);
+                }
+            }
+        } 
+    });
+
+    var s_time = null;
+    function start() {
+        s_time = new Date();
+    }
+
+    $(function(){
+        var pagetop = $('#page_top');
+        // ボタン非表示
+        pagetop.hide();
+
+        // 50px スクロールしたらボタン表示
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                pagetop.fadeIn();
+            } else {
+                pagetop.fadeOut();
+            }
+        });
+        pagetop.click(function () {
+            $('body, html').animate({ scrollTop: 0 }, 500);
+            return false;
+        });
+    });
+
+//ここまでが記述領域［END］
+</script>
+</body>
+</html>

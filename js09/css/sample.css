@@ -1,0 +1,199 @@
+body {
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+      text-align: center;
+}
+
+header {
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      color: rgb(0, 0, 0);
+}
+
+main {
+      border-bottom: 1px solid #ccc;
+}
+
+footer {
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      color: rgb(131, 113, 113);
+      margin-top: 3px;
+      margin-bottom: 3px;
+}
+
+p {
+      font-size: 25px;
+      text-align: center;
+      padding-left: 25%;
+      border-bottom: 1px solid #fff;
+      height: 60px;
+}
+
+ul {
+      padding: 0;
+      border-top: 1px solid #000000;
+      display: table;
+      /* 定義 */
+      table-layout: fixed;
+      width: 100%;
+}
+
+li {
+      text-align: center;
+      list-style-type: none;
+      border: 1px solid #666;
+      background-color: #FFF;
+      display: table-cell;
+      /* 定義 */
+      cursor: pointer;
+}
+
+li:hover {
+      background: #7fb5c5;
+      color: #fff;
+}
+
+textarea{
+      margin: 3%;
+      width: 30%;
+      height: 30px;
+      font-size:50%;
+      box-shadow: 3px 3px 3px 3px #555;
+}
+
+h1 {
+      padding-top: 15px;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1em;
+      font-size: 30px;
+}
+
+h1:before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      display: inline-block;
+      width: 60px;
+      height: 5px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: rgb(160, 131, 131); 
+      border-radius: 10px;
+}
+
+.flame27 {
+      position: relative;
+      margin: 2em auto;
+      padding: 1em;
+      width: 80%;
+      color: #686868;
+      background-color: #fff;
+      border: 4px double #e2b6ba;
+      box-shadow: 2px 2px 2px #ccc;
+      border-radius: 10px;
+}
+
+.flame27 .flame27-title {
+      position: absolute;
+      padding: 0 1em;
+      left: 20px;
+      top: -15px;
+      font-weight: bold;
+      background-color: #fff;
+      color:#e2b6ba;
+      border-radius: 10px;
+}
+
+.flame27 p {
+      text-align: center;
+      padding: 15px 20px;
+      margin: 0;
+}
+  
+h2 {
+      font-size: 20px;
+      position: relative;
+      line-height: 1.4;
+      padding:0.25em 1em;
+      display: inline-block;
+      top:0;
+}
+  
+h2:before, h2:after { 
+      position: absolute;
+      top: 0;
+      content:'';
+      width: 8px;
+      height: 100%;
+      display: inline-block;
+}
+
+h2:before {
+      border-left: solid 1px black;
+      border-top: solid 1px black;
+      border-bottom: solid 1px black;
+      left: 0;
+}
+
+h2:after {
+      content: '';
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-bottom: solid 1px black;
+      right: 0;
+}
+
+h4{
+      font-size: 20px;
+}
+
+#page_top {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+}
+  
+#page_top a {
+      background-color: #999;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      padding: 15px 15px;
+      font-size: 20px;
+}
+  
+#page_top a:hover {
+      background-color: #666;
+      text-decoration: none;
+}
+
+.kakomi-smart2 {
+      position: relative;
+      margin: 2em auto;
+      padding: 1em 1em .8em;
+      width: 70%; /* ボックス幅 */
+      border-style: solid;
+      border-width: 5px 0 0 0;
+      border-color: #ffffff; /* 枠の色 */
+      background-color: #ffffff; /* 背景色 */
+      color: #666; /* テキスト色 */
+      box-shadow: 0 0 3px #999; /* 影の色 */
+}
+
+.title-smart2{
+      position: absolute;
+      top: 8px;
+      left: 15px;
+      background-color: #ffffff; /* タイトル背景色 */
+      color: #907b6e; /* タイトル色 */
+      font-size: 20px;
+      font-weight: bold;
+      border-style: none none double;
+      border-color: #907b6e; /*タイトル下線 */
+      border-width: 3px;
+}
+  
