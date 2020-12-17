@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>canvas_base.html</title>
+</head>
+<style>
+
+body{
+    text-align: center;
+    background-color: #f0f8ff;
+    font-family: cursive;
+}
+/*Triangle*/
+.btn-tri {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #bdb76b;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #808000;
+    border-radius: 3px;
+}
+.btn-tri:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+/*Rectangle*/
+.btn-square {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #d2b48c;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #b8860b;
+    border-radius: 3px;
+}
+.btn-square:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+/*clear*/
+.btn-cle {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #b0c4de;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #708090;
+    border-radius: 3px;
+}
+.btn-cle:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+/*Circle*/
+.btn-Cir {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #bc8f8f;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #8b0000;
+    border-radius: 3px;
+}
+.btn-Cir:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+.range{
+    color: rgb(138, 62, 91);
+}
+canvas{
+    background-color: #FFF;
+}
+
+</style>
+<body>
+    <section>
+        <h1>Canvas</h1>
+        <nav>
+
+            <!-- 日付けを変更するHTML要素[id="date"] -->
+            <input type="date" id="dt">
+            <!-- 線の太さを変更するスライダーHTML要素[id="range"] -->
+            <input type="range" id="size" min="1" max="100" value="50">
+            <!-- 線の色を変更するカラーピッカーHTML要素[id="color"] -->
+            <input type="color" id="col">
+
+            <br>
+            <!-- Triangle.HTML要素 -->
+            <!--<button onclick="drawLine();">Triangle</button>-->
+            <a href="#" class="btn-tri" onclick="drawLine();"> ▽ Triangle </a>
+            <!-- Rectangle,HTML要素 -->
+            <!-- <button onclick="drawRect();">Rectangle</button> -->
+            <a href="#" class="btn-square" onclick="drawRect();"> ◇ Rectangle</a>
+            <!-- Circle,HTML要素 -->
+            <!-- <button onclick="drawCircle();">Circle</button> -->
+            <a href="#" class="btn-Cir" onclick="drawCircle();"> 〇 Circle</a>
+
+        </nav>
+        <canvas id="drowarea" width="500" height="500" style="border:2px dashed #808000;"></canvas>
+
+    </section>  
+            <!-- 消すHTML要素[id="clear_btn"] -->
+            <!-- <button id="clear_btn">clear</button> -->
+            <a href="#" class="btn-cle" id="clear_btn"> clear </a>
+
+<script src="js/jquery-2.1.3.min.js"></script>
+    <script>
+        
+        //初期化(変数letで宣言)
+        let canvas_mouse_event = false; //スイッチ [ true=線を引く, false=線は引かない ]  ＊＊＊
+        let oldX = 0; //１つ前の座標を代入するための変数
+        let oldY = 0; //１つ前の座標を代入するための変数
+        let bold_line = 3; //ラインの太さをここで指定(スライダー値をここに入れる)
+        let color = "#ccc"; //ラインの色をここで指定(カラーピッカー値をここに代入)
+        
+        //------------------------------------------------
+        const can = $("#drowarea")[0]; //CanvasElement
+        const ctx = can.getContext("2d"); //描画するための準備！
+        //------------------------------------------------
+
+        //mousedown：フラグをTrue
+        //-----------------------------------------------
+        //oldX = e.offsetX;       //MOUSEDOWNしたX横座標取得
+        //oldY = e.offsetY; //MOUSEDOWN Y高さ座標取得
+        //canvas_mouse_event=true;
+        //-----------------------------------------------
+        //上5つのスクリプトを記述します。
+        $(can).on("mousedown", function(e){
+            oldX = e.offsetX;       //MOUSEDOWNしたX横座標取得
+            oldY = e.offsetY; //MOUSEDOWN Y高さ座標取得
+            canvas_mouse_event=true; //スイッチを入れる
+        });
+
+        //mousemove：フラグがTrueだったら描く ※e：イベント引数取得
+        //----------------------------------------------
+        $(can).on("mousemove", function(e){
+            if(canvas_mouse_event==true){
+                const px = e.offsetX;
+                const py = e.offsetY;
+                ctx.strokeStyle = color; //#ccc
+                ctx.lineWidth = bold_line; //3
+
+                ctx.beginPath(); //初期化
+                ctx.lineJoin= "round"; //丸先
+                ctx.lineCap = "round"; //丸先
+                ctx.moveTo(oldX, oldY); //線開始
+                ctx.lineTo(px, py); //線終了
+                ctx.stroke(); //線を描く
+                oldX = px; //新しい座標を古い座標に入れ替える
+                oldY = py; //新しい座標を古い座標に入れ替える
+            }
+        });
+
+        //canvasの外でマウスを離した時の処理
+        $(document).on("mouseup", function() {
+            canvas_mouse_event = false;
+        });
+
+        //mouseup：フラグをfalse
+        //------------------------------------------------
+        //    canvas_mouse_event=false;
+        //------------------------------------------------
+        $(can).on("mouseup",function(){
+            canvas_mouse_event=false;
+        });
+
+        //#clear_btn：クリアーボタンAction
+        //-----------------------------------------------------------------
+        //    ctx.beginPath();
+        //    ctx.clearRect(0, 0, can.width, can.height);
+        //-----------------------------------------------------------------
+        $("#clear_btn").on("click", function(){
+            ctx.beginPath(); //初期化
+            ctx.clearRect(0, 0, can.width, can.height); //領域を消す
+        });
+
+        //日付変更
+        $("#dt").on("change",function(){
+            const v = $(this).val();
+            $("#d").html(v);
+            //fontサイズ、書式
+            ctx.font = "25px _sans";
+            //文字の設置位置
+            ctx.textBaseline = "top"; //top,middle,bottom...
+            //表示文字と座標
+            ctx.fillText(v, 10, 10); //ctx.fillText(文字列,x,y)
+        });
+
+        //カラー変更
+        $("#col").on("change",function(){
+            const v = $(this).val();
+            color = v;
+            $(color).css(v);
+            
+        });
+
+        //線サイズ変更
+        $("#size").on("change",function(){
+            const v = $(this).val();
+            bold_line = v;
+            $(size).css(v);
+        });
+
+        //Triangle関数
+        function drawLine() {
+            //パス開始
+            ctx.beginPath();
+            //パス始点の座標
+            ctx.moveTo( 10, 270);
+            //線の終点の座標
+            ctx.lineTo( 250, 490);
+            //線の終点の座標
+            ctx.lineTo( 10, 490);
+            //パス終了
+            ctx.closePath();
+            //パスの輪郭の描画
+            ctx.stroke();
+
+            //パス開始
+            ctx.beginPath();
+            ctx.moveTo( 270, 10);
+            ctx.lineTo( 490, 220);
+            ctx.lineTo( 490, 10);
+            ctx.closePath();
+            ctx.stroke();
+            return false;
+        }
+                
+        //Rect関数
+        function drawRect() {
+            //[strokeRect]用色指定
+            ctx.strokeStyle = "#000000";
+            //四角形・枠のみ描画
+            ctx.strokeRect( 10, 10, 480, 480);
+            //四角形・全体をクリア
+            ctx.clearRect( 75, 75, 50, 50);
+            return false;
+        }
+
+        //Circle関数
+        function drawCircle() {
+            //[strokeRect]用色指定
+            ctx.strokeStyle = "#000000";
+            //[fillRect]用色指定
+            ctx.fillStyle = "white";
+            //線の幅は3px
+            ctx.lineWidth = 2; 
+        
+            //パス開始
+            ctx.beginPath();
+            //円描画:中心(100, 100)で半径50pxの円
+            ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+            //パス終了
+            ctx.closePath();
+            //塗りつぶす
+            ctx.fill();
+            //パスの輪郭の描画
+            ctx.stroke();
+            return false;
+        }
+
+    </script>
+</body>
+</html>
