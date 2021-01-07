@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+}
+
+header {
+  background-color: rgb(158, 179, 209);
+  text-align: center;
+  color: rgba(247, 242, 242, 0.863);
+}
+
+h1{
+  padding-top: 10px;
+}
+
+h2{
+  font-size:16px;
+}
+
+p {
+  font-size: 100%;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  height: 100px;
+}
+
+ul {
+  padding: 0;
+  display: table;
+  padding: 5px 5px;
+  /* 定義 */
+  table-layout: fixed;
+  width: 90%;
+  padding-left: 5%;
+  border-spacing: 3px 0px;
+}
+
+li {
+  text-align: center;
+  list-style-type: none;
+  /*border: 0.5px solid rgb(163, 163, 163);*/
+  background-color: rgba(185, 194, 212, 0.945);
+  opacity: 0.7;
+  display: table-cell;
+  /* 定義 */
+  cursor: pointer;
+  /*border-bottom: solid 1px rgb(163, 163, 163);
+  cursor: pointer;*/
+  border-spacing: 3px 0px;
+}
+
+li:hover {
+  background: rgb(158, 179, 209);
+  color: #fff;
+  border-spacing: 3px 0px;
+}
+
+textarea{
+  margin: 3%;
+  width: 30%;
+  height: 30px;
+  font-size:50%;
+  box-shadow: 3px 3px 3px 3px #555;
+  border-spacing: 3px 0px;
+}
+
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: rgb(147, 174, 211);
+  opacity: 0.6;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+
+#page_top a::before{
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f0d8';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
