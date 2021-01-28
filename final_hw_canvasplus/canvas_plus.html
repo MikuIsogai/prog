@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>canvas_plus.html</title>
+</head>
+<style>
+
+body{
+    text-align: center;
+    background-color: #EEF9FF;
+    font-family: cursive;
+}
+
+/*Triangle*/
+.btn-tri {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #bdb76b;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #808000;
+    border-radius: 3px;
+}
+
+.btn-tri:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+/*Rectangle*/
+.btn-square {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #d2b48c;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #b8860b;
+    border-radius: 3px;
+}
+
+.btn-square:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+/*clear*/
+.btn-cle {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #b0c4de;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #708090;
+    border-radius: 3px;
+}
+
+.btn-cle:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+/*Circle*/
+.btn-Cir {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #bc8f8f;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #8b0000;
+    border-radius: 3px;
+}
+
+.btn-Cir:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.range{
+    color: rgb(138, 62, 91);
+}
+
+canvas{
+    background-color:  aliceblue;
+    margin-top: 10px;
+}
+
+/*Answer*/
+.btn-nex {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background:#B8B1AB;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #757575;
+    border-radius: 3px;
+}
+
+.btn-nex:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+/*nextquestion*/
+.btn-nextq {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background:#D7BFAF;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #978D86;
+    border-radius: 3px;
+}
+
+.btn-nextq:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+p{
+    margin-top: 0;
+    padding-top: 0;
+    font-family: "serif";
+    line-height: 4.5px;
+    font-size: 20px;
+}
+
+.box1 {
+    padding: 0.5em 1em;
+    margin: 1em 300px 25px 300px;
+    font-weight: bold;
+    border: solid 3px #aac5de;
+    background-color: aliceblue;
+}
+
+</style>
+<body>
+    <section>
+        <h1 id="title">- お絵描き診断 -</h1>
+        <nav>
+            <div class="box1">
+            線の太さ
+            <!-- 線の太さを変更するスライダーHTML要素[id="range"] -->
+            <input type="range" id="size" min="1" max="100" value="50">
+            <span id="line_no">50</span>
+            <br>
+            &nbsp;透 明 度
+            <!-- 透明度の変更 -->
+            <input type="range" id="alpha" min="1" max="100" value="50">
+            <span id="alpha_no">50</span>
+
+            <br>
+            <!-- Triangle.HTML要素 -->
+            <!--<button onclick="drawLine();">Triangle</button>-->
+            <a href="#" class="btn-tri" onclick="drawLine();"> ▽ Triangle </a>
+            <!-- Rectangle,HTML要素 -->
+            <!-- <button onclick="drawRect();">Rectangle</button> -->
+            <a href="#" class="btn-square" onclick="drawRect();"> ◇ Rectangle</a>
+            <!-- Circle,HTML要素 -->
+            <!-- <button onclick="drawCircle();">Circle</button> -->
+            <a href="#" class="btn-Cir" onclick="drawCircle();"> 〇 Circle</a>
+            <!-- 消すHTML要素[id="clear_btn"] -->
+            <!-- <button id="clear_btn">clear</button> -->
+            <a href="#" class="btn-cle" id="clear_btn"> Clear </a>
+
+            <!-- 日付けを変更するHTML要素[id="date"] -->
+            <!-- 線の色を変更するカラーピッカーHTML要素[id="color"] -->
+            <!-- ファイル読み込み -->
+            <p>
+                <input type="color" id="col">
+                &nbsp;
+                <input type="date" id="dt">
+                &nbsp;
+                <input type="file" onchange="onFileSelected(this)">
+            </p>
+        </div>
+        </nav>
+            <!-- 心理テスト問題 -->
+            <p id="q_num"><p id="q"></p></p>
+            
+            <!-- canvas -->
+            <p><canvas id="test_canvas" width=500 height=500 style="border:2px dashed #808000;"></canvas></p>
+
+        </nav>
+        <!--<canvas id="drowarea" width="500" height="500" style="border:2px dashed #808000;"></canvas>-->
+
+    </section> 
+        <!-- HTML要素[id="next_btn"] -->
+        <!-- <button id="next_btn">next</button> -->
+        <!-- HTML要素[id="nq_btn"] -->
+        <!-- <button id="nq_btn">Nexe Q</button> -->
+        <a href="#" class="btn-nex" id="next_btn"> Answer </a>
+        <a href="#" class="btn-nextq" id="nq_btn"> Nexe Question</a>
+        
+        <h3 id="kekka"></h3> 
+<script src="js/jquery-2.1.3.min.js"></script>
+<script>
+        
+        //初期化(変数letで宣言)
+        let canvas_mouse_event = false; //スイッチ [ true=線を引く, false=線は引かない ]  ＊＊＊
+        let oldX = 0; //１つ前の座標を代入するための変数
+        let oldY = 0; //１つ前の座標を代入するための変数
+        let bold_line = 3; //ラインの太さをここで指定(スライダー値をここに入れる)
+        let color = "#ccc"; //ラインの色をここで指定(カラーピッカー値をここに代入)
+        //let backgroundColor = "#fff";
+        
+        //------------------------------------------------
+        const can = $("#test_canvas")[0]; //CanvasElement
+        const ctx = can.getContext("2d"); //描画するための準備！
+        //------------------------------------------------
+
+        //mousedown：フラグをTrue
+        //-----------------------------------------------
+        //oldX = e.offsetX;       //MOUSEDOWNしたX横座標取得
+        //oldY = e.offsetY; //MOUSEDOWN Y高さ座標取得
+        //canvas_mouse_event=true;
+        //-----------------------------------------------
+        //上5つのスクリプトを記述します。
+        $(can).on("mousedown", function(e){
+            oldX = e.offsetX;       //MOUSEDOWNしたX横座標取得
+            oldY = e.offsetY; //MOUSEDOWN Y高さ座標取得
+            canvas_mouse_event=true; //スイッチを入れる
+        });
+
+        //mousemove：フラグがTrueだったら描く ※e：イベント引数取得
+        //----------------------------------------------
+        $(can).on("mousemove", function(e){
+            if(canvas_mouse_event==true){
+                const px = e.offsetX;
+                const py = e.offsetY;
+                ctx.strokeStyle = color; //#ccc
+                ctx.lineWidth = bold_line; //3
+                ctx.globalAlpha = document.getElementById("alpha").value/100; //0.5
+                //ctx.bgColor = backgroundColor;
+
+                ctx.beginPath(); //初期化
+                ctx.lineJoin= "round"; //丸先
+                ctx.lineCap = "round"; //丸先
+                ctx.moveTo(oldX, oldY); //線開始
+                ctx.lineTo(px, py); //線終了
+                ctx.stroke(); //線を描く
+                oldX = px; //新しい座標を古い座標に入れ替える
+                oldY = py; //新しい座標を古い座標に入れ替える
+            }
+        });
+
+        //canvasの外でマウスを離した時の処理
+        $(document).on("mouseup", function() {
+            canvas_mouse_event = false;
+        });
+
+        //mouseup：フラグをfalse
+        //------------------------------------------------
+        //    canvas_mouse_event=false;
+        //------------------------------------------------
+        $(can).on("mouseup",function(){
+            canvas_mouse_event=false;
+        });
+
+        //#clear_btn：クリアーボタンAction
+        //-----------------------------------------------------------------
+        //    ctx.beginPath();
+        //    ctx.clearRect(0, 0, can.width, can.height);
+        //-----------------------------------------------------------------
+        $("#clear_btn").on("click", function(){
+            alert("全部消されますがよろしいですか？");
+            ctx.beginPath(); //初期化
+            ctx.clearRect(0, 0, can.width, can.height); //領域を消す
+        });
+
+        //日付変更
+        $("#dt").on("change",function(){
+            const v = $(this).val();
+            $("#d").html(v);
+            //fontサイズ、書式
+            ctx.font = "25px _sans";
+            //文字の設置位置
+            ctx.textBaseline = "top"; //top,middle,bottom...
+            //表示文字と座標
+            ctx.fillText(v, 10, 10); //ctx.fillText(文字列,x,y)
+        });
+
+        //カラー変更
+        $("#col").on("change",function(){
+            const v = $(this).val();
+            color = v;
+            $(color).css(v);
+        });
+
+        //線サイズ変更
+        $("#size").on("change",function(){
+            const v = $(this).val();
+            bold_line = v;
+            $("#line_no").html(v);
+            $(size).css(v);
+        });
+
+        //  透明度変更後の数字の変更
+        $("#alpha").on("change",function(){
+            const v = $(this).val();
+            $("#alpha_no").html(v);
+        });
+
+        //Triangle関数
+        function drawLine() {
+            //パス開始
+            ctx.beginPath();
+            //パス始点の座標
+            ctx.moveTo( 10, 270);
+            //線の終点の座標
+            ctx.lineTo( 250, 490);
+            //線の終点の座標
+            ctx.lineTo( 10, 490);
+            //パス終了
+            ctx.closePath();
+            //パスの輪郭の描画
+            ctx.stroke();
+
+            //パス開始
+            ctx.beginPath();
+            ctx.moveTo( 270, 10);
+            ctx.lineTo( 490, 220);
+            ctx.lineTo( 490, 10);
+            ctx.closePath();
+            ctx.stroke();
+            return false;
+        }
+                
+        //Rect関数
+        function drawRect() {
+            //[strokeRect]用色指定
+            ctx.strokeStyle = "#000000";
+            //四角形・枠のみ描画
+            ctx.strokeRect( 10, 10, 480, 480);
+            //四角形・全体をクリア
+            ctx.clearRect( 75, 75, 50, 50);
+            return false;
+        }
+
+        //Circle関数
+        function drawCircle() {
+            //[strokeRect]用色指定
+            ctx.strokeStyle = "#000000";
+            //[fillRect]用色指定
+            ctx.fillStyle = "white";
+            //線の幅は3px
+            ctx.lineWidth = 2; 
+        
+            //パス開始
+            ctx.beginPath();
+            //円描画:中心(100, 100)で半径50pxの円
+            ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+            //パス終了
+            ctx.closePath();
+            //塗りつぶす
+            ctx.fill();
+            //パスの輪郭の描画
+            ctx.stroke();
+            return false;
+        }
+
+        //画像の読み込み↓
+        //参考URL：https://blog.codecamp.jp/programming-javascript-Imagedata
+        function onFileSelected(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onload = onFileLoaded;
+            reader.readAsDataURL(file);
+        }
+
+        function onFileLoaded(e) {
+            var src_data = e.target.result;
+            var img = new Image();
+            img.onload = onImageSetted;
+            img.src = src_data;
+        }
+
+        function onImageSetted(e) {
+            var data = createImageData(e.target);
+            document.getElementById('test_canvas').getContext('2d').putImageData(data, 0, 0);
+        }
+
+        function createImageData(img) {
+            var cv = document.createElement('canvas');
+            cv.width = img.naturalWidth;
+            cv.height = img.naturalHeight;
+            var ct = cv.getContext('2d');
+            if(img.width > 500 || img.height > 500){
+                img.width = img.width * 0.1;
+                img.height = img.height * 0.1;
+            }
+            ct.drawImage(img, 250-0.6*img.width, 150-0.5*img.height);
+            var data = ct.getImageData(0, 0, cv.width, cv.height);
+            return data;
+        }
+
+        //診断
+        const qs = ["一軒の家 ➡ 煙突 ➡ 池 ➡ 生き物 の順に絵を書いてください", 
+                "お手本なしで「ドラえもん」の顔を描いてみよう！",
+                "「田」の文字を書いてみよう！。",
+                "旅行で忘れ物をした時、取りに帰りたいものは？ ピアス/腕時計/旅行の計画書/折り畳み傘",
+                "レストランで食事中、間違って運ばれてきた料理は？ お子様ランチ/巨大ハンバーグ/コーヒー/フルーツパフェ"
+        ];
+
+        const an = [["対人関係・仕事・お金・性に対する向き合い方が分かる！"], //詳細＊https://www.codawaras.com/jyunban4ekaku/
+                ["面食い度が診断できる！"], //詳細＊https://cancam.jp/archives/408639
+                ["性格が診断できる！"], //詳細＊https://p-dress.jp/articles/6070/2
+                ["何にストレスを感じるかが分かる！"], //詳細＊https://crea.bunshun.jp/articles/-/29130
+                ["わがままの傾向が分かる！"] //詳細＊https://crea.bunshun.jp/articles/-/28750
+        ];
+
+        //問題数[配列]
+        const num = ["Q 1", "Q 2", "Q 3", "Q 4", "Q 5"];
+
+        //1.最初の問題文＆回答選択肢＆回答値を設定
+        let i = 0;
+        $("#q").text( qs[i] );
+        $("#q_num").text( num[i] );
+        
+        //2.ラジオボタンをクリックしたらイベント発生！(クリックイベント)
+        $("#next_btn").on("click",function(){
+            $("#kekka").text( an[i] );
+        });
+
+        //2.ラジオボタンをクリックしたらイベント発生！(クリックイベント)
+        $("#nq_btn").on("click",function(){
+            i++; // 配列に入れるiが1プラスされる
+            if (i < 5){
+                $("#q").text( qs[i] );
+                $("#q_num").text( num[i] );
+                //$("#kekka").text( an[i] );
+            } else {
+                alert("これにてお絵描き診断終了！");
+                location.href = "a.html";
+            }
+        });
+
+</script>
+</body>
+</html>

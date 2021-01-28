@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas_plus_finalpg</title>
+</head>
+<style>
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background:  #708090;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 13px 0;
+}
+
+a {
+  color: #fff;
+}
+
+.center { text-align: center; }
+
+.container {
+  width: 95%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.episode {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  position: relative;
+}
+
+.episode__number {
+  font-size: 38px;
+  font-weight: 600;
+  padding: 5px 0;
+  position: sticky;
+  top: 0;
+  text-align: center;
+  height: calc(10vw + 20px);
+  transition: all 0.2s ease-in;
+}
+
+.episode__content {
+  border-top: 2px solid #fff;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 10px;
+  padding: 15px 0;
+}
+
+.episode__content .title {
+  font-weight: 600
+}
+
+.episode__content .story {
+  line-height: 26px;
+}
+
+@media (max-width: 600px) {
+  .episode__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .episode__content .story {
+    font-size: 15px;
+  }
+}
+
+.box29 {
+    margin: 0px 400px 0px 450px;
+    background: #dcefff;
+}
+
+.box29 .box-title {
+    font-size: 10px;
+    background:#9bafbe;
+    padding: 15px;
+    margin-bottom: 6px;
+    text-align: left;
+    color: rgba(78, 80, 97, 0.616);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.box29 p {
+    margin-top: 10px;
+    margin: 0;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(33, 33, 41);
+}
+
+.box29 h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: rgb(147, 174, 211);
+  opacity: 0.6;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+
+#page_top a::before{
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f0d8';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+
+</style>
+<body>
+    <body>
+        <div class="container">
+          <h1 class="center">診 断 結 果</h1>
+          
+          <article class="episode">
+            <div class="episode__number">1</div>
+            <div class="episode__content">
+            <div class="title">各項目に対する向き合い方診断</div>
+            <div class="story">
+                <p>□ 家 … 対人関係</p>
+                <p>&nbsp; 家はあなた自身、家に描いたドアや窓の数が信頼している人の数。両開きのものは２つと数えます。ドアや窓は心を開いている相手を象徴しています。</p>
+                <p>□ 煙突 … 仕事</p>
+                <p>&nbsp; 煙突からの煙は仕事に対するやる気を象徴しています。煙が出ていない人は仕事への意欲が薄れがちでお金のために働いている人。煙が出ている人は仕事に生きがいを見出している人。煙がモクモク広がっている人はそれだけやる気も旺盛です。</p>
+                <p>□ 池 … お金</p>
+                <p>&nbsp; 水を溜めておく池はお金に対する感覚を表します。大きい池を描いたひとほどお金に関して満たされていて。小さい池を描いた人はお金に関し飢えているタイプ。</p>
+                <p>□ 生き物 … 性</p>
+                <p>&nbsp; 自由に生き物を描くことによって、その人の一番本能的な部分。つまり、性への感覚が分かります。
+                <br>&nbsp; ・空中の生き物…性に関してロマンティスト、妄想が好き。
+                <br>&nbsp; ・地面にいる生き物…普通の感覚の持ち主、退屈な人。
+                <br>&nbsp; ・池の中の生き物…性に対する執着心が人一倍強い人。
+                </p>
+                <a href="https://www.codawaras.com/jyunban4ekaku/" target="_blank" rel="noopener noreferer">link</a>
+            </div>
+            </div>
+          </article>
+          
+          <article class="episode">
+            <div class="episode__number">2</div>
+            <div class="episode__content">
+            <div class="title">面食い度診断</div>
+            <div class="story">
+                <p>□ 目の位置がおかしい … 美意識が高く、かなりの面食い</p>
+                <p>&nbsp; 目の位置がおかしい顔を描いたあなたは、全体のバランスよりも目を描くことに意識が向きすぎている、つまりある特定のパーツ（特に目や鼻）にこだわりが強いと言えます。</p>
+                <p>□ ヒゲの本数が違う … あまり容姿にこだわりはないタイプ</p>
+                <p>&nbsp; 容姿に対してそこまでこだわりがないことで、恋愛対象の幅が広がるというメリットもありますが、逆にそのせいで恋のときめきが薄らいでしまっている可能性も。</p>
+                <p>□ 全体のバランスがおかしい … 相手の容姿を理想化してしまうタイプ</p>
+                <p>&nbsp; このタイプには、相手を自分の頭の中で理想化する人が多いと言えます。</p>
+                <p>□ 全体的に上手 … 付き合う条件が厳しい、そこそこ面食い</p>
+                <p>&nbsp; 恋愛において最も選択ミスが少ないタイプでしょう。ただ、相手を必要以上に値踏みするところがあり、付き合う上での条件がかなり厳しいと言えます。</p>
+                <a href="https://cancam.jp/archives/408639" target="_blank" rel="noopener noreferer">link</a>
+            </div>
+            </div>
+          </article>
+          
+          <article class="episode">
+            <div class="episode__number">3</div>
+            <div class="episode__content">
+            <div class="title">性格診断</div>
+            <div class="story">
+                <p>□ 文字が大きい … 活発でエネルギーにあふれる性格</p>
+                <p>&nbsp; 大きい文字を書くあなたは、普段の行動も活発でエネルギーにあふれ、のびのびと行動範囲も広いのが特徴です。また、細かいことが苦手な人も大きな字になる傾向があります。</p>
+                <p>□ 文字が小さい … 地道にコツコツ積み重ねる性格</p>
+                <p>&nbsp; 小さい文字を書くあなたは、大人しい性格の持ち主。控え目でやや消極的なため派手さはありませんが、地道に手堅くコツコツ積み上げていくタイプです。冷静で周りを静かに眺めているので、今自分が何をすべきか空気を読むのが得意だといえます。</p>
+                <p>□ 文字が丸っこい … 人の心が分かる優しい性格</p>
+                <p>&nbsp; 丸文字の傾向があるあなたは、人の心がわかる優しい性格。丁寧でやわらかい印象をもたれるでしょう。特に女性の場合は、性格にクセが無く男性からの人気もかなりのもの。やや八方美人なところはありますが、皆から愛されるでしょう。</p>
+                <p>□ 文字が角ばっている … 生真面目でキッチリした性格</p>
+                <p>&nbsp; 角ばった文字を書く傾向があるあなたは、生真面目できっちりした性格の人が多いでしょう。ルールを守る性格で、先輩や目上の人の言うことをちゃんと聞くタイプだといえます。少し堅すぎるところもありますが、周囲から信頼され評価されそう。</p>
+                <a href="https://p-dress.jp/articles/6070/2" target="_blank" rel="noopener noreferer">link</a>  
+            </div>
+            </div>
+          </article>
+          
+          <article class="episode">
+            <div class="episode__number">4</div>
+            <div class="episode__content">
+            <div class="title">ストレス負担診断</div>
+            <div class="story">
+                <p>□ ピアス … 自分の外見のことを人に言われたとき</p>
+                <p>&nbsp; ピアスなどの装飾類はあなたの心の中にある「美意識」の象徴です。髪型や服装、お化粧など、割と自信があったのに人にけなされたり、誰かに見下されたりすると猛烈に腹が立ってストレスを感じるでしょう。</p>
+                <p>□ 腕時計 … 不測の出来事</p>
+                <p>&nbsp; 何か不測の出来事が起こって足並みが乱れ、対応がうまくいかないことを批判されると一番傷つきます。特に予定通りに物事が進まなかったりすると落ち着かなくてストレスを感じるでしょう。</p>
+                <p>□ 旅行の計画表 … 手際の悪さ</p>
+                <p>&nbsp; 物事を手際よくこなせないことを叱られると一番傷つきます。特に「今やろうとした」という瞬間、何か言われたり、些細な仕事の不備を指摘されたりすると、心の底から怒りが湧いてストレスを感じるでしょう。</p>
+                <p>□ 折りたたみ傘 … 自己の失敗</p>
+                <p>&nbsp; 自分のせいで相手に迷惑がかかったとき一番傷つきます。特に親しい人を裏切る結果になったり、味方だと信じてもらっている人を裏切らなければならなくなったときには大きなストレスを感じるでしょう。</p>
+                <a href="https://crea.bunshun.jp/articles/-/29130" target="_blank" rel="noopener noreferer">link</a>
+            </div>
+            </div>
+          </article>
+
+          <article class="episode">
+            <div class="episode__number">5</div>
+            <div class="episode__content">
+            <div class="title">わがまま傾向診断</div>
+            <div class="story">
+                <p>□ お子様ランチ … 隠れわがまま</p>
+                <p>&nbsp; 気がつかないうちに、大人でありながら子供のような要求をする「隠れわがまま」の持ち主。わがままを言ってはいけない相手の前ではおとなしいのですが、自分の味方だとわかっている人や絶対にノーと言わない人の前では甘えたりする。</p>
+                <p>□ 巨大ハンバーグ … 忖度わがまま</p>
+                <p>&nbsp; 相手や状況を瞬時に判断して振る舞う「忖度わがまま」の持ち主。ほとんどの周りの人は、普段のあなたがものわかりがよいおとなしいタイプと思っているはず。</p>
+                <p>□ コーヒー … 抑止わがまま</p>
+                <p>&nbsp; 自分をコントロールすることに長けた「抑止わがまま」の持ち主。他人のわがままを軽やかにスルーしたり、やんわり嫌味を言ったりといった大人の対応をしているかも。</p>
+                <p>□ フルーツパフェ … 王道わがまま</p>
+                <p>&nbsp; 誰もが認める「王道わがまま」の持ち主。欲しいものは何でも手に入れなければ気がすまず、自分の望みをすぐに言葉にして周りに伝えずにはいられないでしょう。</p>
+                <p><a href="https://crea.bunshun.jp/articles/-/28750" target="_blank" rel="noopener noreferer">link</a></p>  
+                <div class="episode__content">
+            </div>
+            </div>
+        </article>
+        </div>
+        <div class="box29">
+            <div class="box-title"><p id="rain1"></p></div>
+                <p id="date"></p>
+                <p id="rain0"></p>
+                <p id="rain2"></p>
+                <h1 id="date_img"></h1>
+        </div>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+        <div id="page_top"><a href="#"></a></div>
+
+</body>
+    
+<script src="js/jquery-2.1.3.min.js"></script>
+<script>
+    // YAHOO天気APIに必要
+    // http://developer.yahoo.co.jp/ の「アプリケーション管理」で取得！
+    const appid = "dj00aiZpPWw2TmJkSEZQVTZZYSZzPWNvbnN1bWVyc2VjcmV0Jng9YjU-";
+    const coord = "139.411102,35.615841"; //経度、緯度（唐木田周辺）
+    
+        //getJSON[開始]
+        $.getJSON("https://map.yahooapis.jp/weather/V1/place?callback=?&coordinates="+coord+"&output=jsonp&appid="+appid, function (data) {
+            console.dir(data); //JSONデータ確認用
+            //日時取得
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;  //月は必ず +１をする！
+            const date = now.getDate();
+            const day = now.getDay();  //曜日[0=日曜日,1=月曜日...]
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const s = now.getSeconds();
+
+            //曜日の表示
+            let f = "";
+            if(day == 0){
+            f="日";
+            }else if(day == 1){
+                f="月";
+            }else if(day == 2){
+                f="火";
+            }else if(day == 3){
+                f="水";
+            }else if(day == 4){
+                f="木";
+            }else if(day == 5){
+                f="金";
+            } else {
+                f="土";
+            }
+
+            //必要なデータ（JSON）を取得
+            const d = data.Feature[0].Property.WeatherList.Weather[0].Date;
+            const r0 = data.Feature[0].Property.WeatherList.Weather[0].Rainfall;
+
+            if(r0 == 0){
+                $("#rain0").html("今の天気");
+                $("#rain2").html( r0 + "(mm/h)");
+                $("#date_img").html("⛅");
+            } else if (r0 > 0 && r0 <= 15){
+                $("#rain0").html("今の天気");
+                $("#rain2").html( r0 + "(mm/h)");
+                $("#date_img").html("🌂");
+            } else {
+                $("#rain0").html("今の天気");
+                $("#rain2").html( r0 + "(mm/h)");
+                $("#date_img").html("☔");
+            }
+
+            //日時表示文字列の作成
+            $("#rain1").html(year+"年"+ month+"月"+date+"日"+"（ "+f+" ） "+h+"時"+m+"分"+s+"秒");
+        });
+
+</script>
+</body>
+</html>
